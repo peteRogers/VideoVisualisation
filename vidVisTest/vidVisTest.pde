@@ -5,9 +5,14 @@ ArrayList<float[]> frames = new ArrayList<>();
 int currentFrame = 0;
 PImage img;
 
+
 void setup() {
+  size(1280, 720);
+  
   img = loadImage("screenGrab.png");
-  size(1280, 720, PDF, "filename.pdf");
+  String timestamp = nf(year(), 4) + nf(month(), 2) + nf(day(), 2) + "_" +
+                     nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
+  beginRecord(PDF, "output_" + timestamp + ".pdf");
   // background(255);
   tint(10, 10,10);
  // image(img, 0, 0, width, height);
@@ -56,6 +61,7 @@ void draw() {
     
   }
   if(currentFrame == frames.size()){
+    endRecord();
     exit();
   }
   
